@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProtectComponent } from './auth.component';
+import { Auth } from './auth.component';
 
 describe('ProtectComponent', () => {
-  let component: ProtectComponent;
-  let fixture: ComponentFixture<ProtectComponent>;
+  let component: Auth;
+  let fixture: ComponentFixture<Auth>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProtectComponent]
+      imports: [Auth]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ProtectComponent);
+    fixture = TestBed.createComponent(Auth);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -12,5 +12,5 @@ export const AUTH_LOGIN_URL = new InjectionToken<string>('AUTH_LOGIN_URL');
  * <br>
  * Es utilizada por ``AuthService`` y ``ValidationService``
  */
-export const AUTH_AUTH_URL = new InjectionToken<string>('AUTH_AUTH_URL');
+export const AUTH_SERVICE_URL = new InjectionToken<string>('AUTH_AUTH_URL');
 

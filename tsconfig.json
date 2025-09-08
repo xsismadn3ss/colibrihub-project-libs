@@ -11,6 +11,17 @@
     "skipLibCheck": true,
     "isolatedModules": true,
     "experimentalDecorators": true,
+    "paths": {
+      "shared-components": [
+        "./dist/shared-components"
+      ],
+      "shared-dtos": [
+        "./dist/shared-dtos"
+      ],
+      "shared-services": [
+        "./dist/shared-services"
+      ]
+    },
     "importHelpers": true,
     "target": "ES2022",
     "module": "preserve"
@@ -22,5 +33,25 @@
     "typeCheckHostBindings": true,
     "strictTemplates": true
   },
-  "files": []
+  "files": [],
+  "references": [
+    {
+      "path": "./projects/shared-dtos/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/shared-dtos/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/shared-services/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/shared-services/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/shared-components/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/shared-components/tsconfig.spec.json"
+    }
+  ]
 }

@@ -3,5 +3,83 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "shared-dtos": {
+      "projectType": "library",
+      "root": "projects/shared-dtos",
+      "sourceRoot": "projects/shared-dtos/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/shared-dtos/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/shared-dtos/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/shared-dtos/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "shared-services": {
+      "projectType": "library",
+      "root": "projects/shared-services",
+      "sourceRoot": "projects/shared-services/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/shared-services/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/shared-services/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/shared-services/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "shared-components": {
+      "projectType": "library",
+      "root": "projects/shared-components",
+      "sourceRoot": "projects/shared-components/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/shared-components/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/shared-components/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/shared-components/tsconfig.spec.json"
+          }
+        }
+      }
+    }
   }
 }

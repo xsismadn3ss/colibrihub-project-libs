@@ -21,7 +21,7 @@ export class Protect implements OnInit{
 
   ngOnInit() {
     try{
-      this.validationService.validate().subscribe(data=>{
+      this.validationService.validate().subscribe(()=>{
         this.isValid = true;
         this.isLoaded = true;
       })

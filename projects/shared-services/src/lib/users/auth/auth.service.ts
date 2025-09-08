@@ -12,7 +12,7 @@ export class AuthService {
   private readonly baseUrl = inject(AUTH_SERVICE_URL)
   private readonly prefix = '/authentication'
 
-  getUrl(path: string){
+  private getUrl(path: string){
     return `${this.baseUrl}${this.prefix}/${path}`
   }
 

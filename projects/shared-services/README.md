@@ -1,63 +1,71 @@
 # SharedServices
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.0.
+Librería de servicios compartidos para reutilizar lógica de negocio en
+los módulos del proyecto. En esta librería la lógica 
+de negocio está abstraída y permite agilizar el desarrollo de los equipos
+al importar servicios y solo configurarlos mediante inyección de 
+dependencias
 
-## Code scaffolding
+> Este proyecto está diseñado para angular 20.2.0 o superior
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
-```bash
-ng generate component component-name
-```
+## Configurando un Token
+En el archivo ``app.config.ts`` configura los tokens para
+conectar los servicios de la librería con los microservicios que se van a 
+consumir. Los tokens son necesarios porque se inyectan en los servicios
+y permiten asignarles un valor para que los servicios de la librería
+los utilicen.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+````ts
+import { ApplicationConfig } from '@angular/core';
 
-```bash
-ng generate --help
-```
+import {AUTH_SERVICE_URL} from '@xsismadn3ss/shared-dtos';
+import {environment} from '../environments/environment.development';
+import {provideHttpClient} from '@angular/common/http';
 
-## Building
+export const appConfig: ApplicationConfig = {
+  providers: [
+    /*
+    ---
+    Boilerplate providers
+    ---
+    */
+    provideHttpClient(),
+    // configurando token para URL del microservicio de autenticación
+    {provide: AUTH_SERVICE_URL, useValue: environment.authURL}
+  ]
+};
+````
 
-To build the library, run:
+Es recomendable que las variables de entorno para el proyecto se
+guarden en un archivo ``environment.ts`` o ``environment.development.ts``.
+Ejecuta ``ng generate environments`` para crear los archivos de variables
+de entorno.
 
-```bash
-ng build shared-services
-```
+## Utilizar servicio
+Puedes utilizar ``inject`` en Angular para inyectar el servicio
+como dependencia en las funcionalidades que deseas implementar en el proyecto.
 
-This command will compile your project, and the build artifacts will be placed in the `dist/` directory.
+Inyectando servicio en un componente:
+````ts
+import { ValidationService } from 'colibrihub-shared-services';  
+  
+export class MiComponente {  
+  private readonly validationService = inject(ValidationService);  
+    
+  // Usar el servicio  
+  validarSesion() {  
+    this.validationService.validate().subscribe(/* ... */);  
+  }  
+}
+````
 
-### Publishing the Library
+Inyectando servicio en un Guard:
+````ts
+import { ValidationService } from 'colibrihub-shared-services';
 
-Once the project is built, you can publish your library by following these steps:
-
-1. Navigate to the `dist` directory:
-   ```bash
-   cd dist/shared-services
-   ```
-
-2. Run the `npm publish` command to publish your library to the npm registry:
-   ```bash
-   npm publish
-   ```
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+export const miGuard: CanActivateFn = () => {  
+  const validationService = inject(ValidationService);  
+  return validationService.validate().pipe(/* ... */);  
+};
+````

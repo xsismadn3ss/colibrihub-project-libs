@@ -4,6 +4,18 @@ import {AUTH_SERVICE_URL} from '../../config/config';
 import {LoginDto, LoginResponseDto, MessageDto} from 'colibrihub-shared-dtos';
 import {Observable} from 'rxjs';
 
+/**
+ * ## ``AuthService``
+ * Este servicio permite iniciar sesión y cerrar sesión.
+ * Utiliza este servicio para agregar estas funcionalidades
+ * a tú módulos.
+ *
+ * Para utilizar este servicio debes inyectarlo como dependencia
+ * en tu componente u otra funcionalidad de angular.
+ *
+ * > **Nota**: se debe configurar el token ``AUTH_SERVICE_URL``
+ * para poder usarlo sin problemas
+ */
 @Injectable({
   providedIn: 'root'
 })

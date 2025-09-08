@@ -3,6 +3,14 @@ import {AUTH_SERVICE_URL} from '../../config/config';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {findCookie} from '../../utils/cookie';
 
+/**
+ * ## ``ValidationService``
+ * Utiliza este servicio para validar la sesión del usuario
+ * y agregar una capa de seguridad en tu módulo.
+ *
+ * > **Nota**: Configura el token ``AUTH_SERVICE_URL`` para poder
+ * user el servicio sin problemas.
+ */
 @Injectable({
   providedIn: 'root'
 })

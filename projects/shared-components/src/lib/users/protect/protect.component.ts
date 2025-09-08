@@ -2,7 +2,7 @@ import {Component, inject, OnInit} from '@angular/core';
 import {ValidationService, AUTH_LOGIN_URL} from 'colibrihub-shared-services';
 
 @Component({
-  selector: 'lib-protect',
+  selector: 'protect',
   imports: [],
   template: `
     @if (isLoaded) {

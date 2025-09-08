@@ -1,6 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {ValidationService} from 'colibrihub-shared-services';
-import {AUTH_LOGIN_URL} from 'shared-services';
+import {ValidationService, AUTH_LOGIN_URL} from 'colibrihub-shared-services';
 
 @Component({
   selector: 'lib-protect',

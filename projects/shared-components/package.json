@@ -1,0 +1,23 @@
+{
+  "name": "colibrihub-shared-components",
+  "version": "0.0.1",
+  "description": "Componentes públicos para reutilizar en los módulos del proyecto",
+  "keywords": ["colibrihub", "colibri", "hub", "shared", "components", "angular"],
+  "license": "MIT",
+  "author": {
+    "name": "xsismadn3ss",
+    "email": "2477carlos.a@gmail.com"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@angular/common": "^20.2.0",
+    "@angular/core": "^20.2.0",
+    "colibrihub-shared-services": "^0.0.2"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

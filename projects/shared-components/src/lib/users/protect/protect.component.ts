@@ -1,8 +1,56 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {ValidationService, AUTH_LOGIN_URL} from 'colibrihub-shared-services';
 
+/**
+ * @component Protect
+ * @description
+ * Este componente protege el contenido que envuelve, mostrándolo solo si el usuario
+ * tiene una sesión válida. Si la sesión no es válida, redirige al usuario a la URL
+ * de inicio de sesión especificada.
+ *
+ * ## Uso
+ *
+ * Para utilizar este componente, envuelve el contenido que deseas proteger con la etiqueta `<protect>`.
+ *
+ * ```html
+ * <!-- app.component.html -->
+ * <h1>Mi Aplicación</h1>
+ * <protect>
+ *   <h2>Área Protegida</h2>
+ *   <p>Este contenido solo es visible para usuarios autenticados.</p>
+ * </protect>
+ * ```
+ *
+ * ## Configuración
+ *
+ * `Protect` depende de dos tokens de inyección que deben ser provistos en la configuración
+ * de tu aplicación (`app.config.ts`): `AUTH_SERVICE_URL` y `AUTH_LOGIN_URL`.
+ *
+ * - `AUTH_SERVICE_URL`: La URL base del servicio de autenticación que se usará para validar la sesión del usuario.
+ * - `AUTH_LOGIN_URL`: La URL a la que se redirigirá al usuario si la validación de la sesión falla.
+ *
+ * ### Ejemplo de configuración en `app.config.ts`
+ *
+ * ```typescript
+ * import { ApplicationConfig } from '@angular/core';
+ * import { provideRouter } from '@angular/router';
+ * import { AUTH_SERVICE_URL, AUTH_LOGIN_URL } from 'colibrihub-shared-services';
+ * import { routes } from './app.routes';
+ *
+ * export const appConfig: ApplicationConfig = {
+ *   providers: [
+ *     provideRouter(routes),
+ *     // Provee la URL del servicio de autenticación
+ *     { provide: AUTH_SERVICE_URL, useValue: 'https://api.tu-dominio.com/auth' },
+ *     // Provee la URL para el inicio de sesión
+ *     { provide: AUTH_LOGIN_URL, useValue: 'https://login.tu-dominio.com' }
+ *   ]
+ * };
+ * ```
+ */
 @Component({
   selector: 'protect',
+  standalone: true,
   imports: [],
   template: `
     @if (isLoaded) {
@@ -19,15 +67,16 @@ export class Protect implements OnInit{
   private readonly validationService = inject(ValidationService)
 
   ngOnInit() {
-    try{
-      this.validationService.validate().subscribe(()=>{
+    this.validationService.validate().subscribe({
+      next: ()=>{
         this.isValid = true;
         this.isLoaded = true;
-      })
-    } catch(e){
-      this.isLoaded = true;
-      this.isValid = false;
-      window.location.href = `${this.loginUrl}?redirect=${window.location.host}`
-    }
+      },
+      error: ()=>{
+        this.isLoaded = true;
+        this.isValid = false;
+        window.location.href = `${this.loginUrl}?redirect=${window.location.host}`
+      }
+    });
   }
 }

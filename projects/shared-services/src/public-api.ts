@@ -2,4 +2,9 @@
  * Public API Surface of shared-services
  */
 
-export * from './lib/shared-services';
+// config
+export * from './lib/config/config';
+
+
+// user
+export * from './lib/users/user'

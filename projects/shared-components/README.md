@@ -1,63 +1,79 @@
 # SharedComponents
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.0.
+Esta librería tiene componentes reutilizables para añadir
+funcionalidades y reutilizarlos en otros módulos.
 
-## Code scaffolding
+> Esta librería está diseñada para Angular 20.0.2
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
+## Instalación
 ```bash
-ng generate component component-name
+npm install colibrihub-shared-components  
+npm install colibrihub-shared-services
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Importar Componente
 
-```bash
-ng generate --help
-```
+````ts
+import { Auth } from 'colibrihub-shared-components';  
+  
+@Component({  
+  selector: 'app-mi-componente',  
+  imports: [Auth], // Importar el componente  
+  template: `  
+    <auth>  
+      <div valid>  
+        <h2>¡Bienvenido usuario autenticado!</h2>  
+        <p>Este contenido solo se muestra si estás logueado</p>  
+      </div>  
+      <div invalid>  
+        <h2>Acceso denegado</h2>  
+        <p>Por favor inicia sesión para continuar</p>  
+        <button>Iniciar Sesión</button>  
+      </div>  
+    </auth>  
+  `  
+})  
+export class MiComponente {}
+````
 
-## Building
+## Importar Guard
+````ts
+import { Routes } from '@angular/router';  
+import { validationGuard } from 'colibrihub-shared-components';  
+  
+export const routes: Routes = [  
+  {  
+    path: 'dashboard',  
+    component: DashboardComponent,  
+    canActivate: [validationGuard] // Proteger la ruta  
+  },  
+  {  
+    path: 'perfil',  
+    component: PerfilComponent,  
+    canActivate: [validationGuard]  
+  },  
+  {  
+    path: 'publico',  
+    component: PublicoComponent  
+    // Sin guard - acceso libre  
+  }  
+];
+````
 
-To build the library, run:
+## Configurar Tokens
+Para hacer uso de los componentes debes configurar
+los tokens que permiten que los servicios usados por los
+componentes sean utilizados.
 
-```bash
-ng build shared-components
-```
-
-This command will compile your project, and the build artifacts will be placed in the `dist/` directory.
-
-### Publishing the Library
-
-Once the project is built, you can publish your library by following these steps:
-
-1. Navigate to the `dist` directory:
-   ```bash
-   cd dist/shared-components
-   ```
-
-2. Run the `npm publish` command to publish your library to the npm registry:
-   ```bash
-   npm publish
-   ```
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+````ts
+import { bootstrapApplication } from '@angular/platform-browser';  
+import { AUTH_SERVICE_URL } from 'colibrihub-shared-services';  
+  
+bootstrapApplication(AppComponent, {  
+  providers: [  
+    { provide: AUTH_SERVICE_URL, useValue: 'https://tu-api-auth.com' },  
+    // otros providers...  
+  ]  
+});
+````

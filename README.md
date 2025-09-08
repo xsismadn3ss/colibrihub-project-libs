@@ -14,6 +14,9 @@ para reutilizar lógica de negocio ⚙️
 - [shared-components](./projects/shared-components/README.md) - componentes
 compartidos reutilizables 🧩
 
+Documentación avanzada en:
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/xsismadn3ss/colibrihub-project-libs)
+
 ## Instalación
 
 DTOs:

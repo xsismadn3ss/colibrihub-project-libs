@@ -16,7 +16,7 @@ compartidos reutilizables 🧩
 
 ## Instalación
 
-DTs:
+DTOs:
 ````bash
 npm install colibrihub-shared-dtos
 ````

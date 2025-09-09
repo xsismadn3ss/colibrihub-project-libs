@@ -1,7 +1,9 @@
 import {inject, Injectable, isDevMode} from '@angular/core';
 import {AUTH_SERVICE_URL} from '../../config/config';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {findCookie} from '../../utils/cookie';
+import {Observable, throwError} from 'rxjs';
+import {UserDto} from 'shared-dtos';
 
 /**
  * ## ``ValidationService``
@@ -23,20 +25,25 @@ export class ValidationService {
     return `${this.baseUrl}${this.prefix}/${path}`
   }
 
-  validate(){
+  validate(): Observable<UserDto>{
     if(isDevMode()){
       const cookie = findCookie('token')?.replace(/^token=/, '');
       if(!cookie){
-        throw new Error('Token not found in cookie')
+        return throwError(() => new HttpResponse({
+          status: 401,
+          statusText: 'Unauthorized',
+          body: { message: 'Token not  found in cookie'},
+          url: this.getUrl('header')
+        }))
       }
 
       const headers = new HttpHeaders({
         'Authorization': `Bearer ${cookie}`
       })
 
-      return this.httpClient.get(this.getUrl('header'), {headers})
+      return this.httpClient.get<UserDto>(this.getUrl('header'), {headers})
     }
 
-    return this.httpClient.get(this.getUrl('cookie'), {withCredentials: true})
+    return this.httpClient.get<UserDto>(this.getUrl('cookie'), {withCredentials: true})
   }
 }

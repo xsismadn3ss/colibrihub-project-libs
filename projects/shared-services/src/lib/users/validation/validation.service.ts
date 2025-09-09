@@ -3,7 +3,7 @@ import {AUTH_SERVICE_URL} from '../../config/config';
 import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {findCookie} from '../../utils/cookie';
 import {Observable, throwError} from 'rxjs';
-import {UserDto} from 'shared-dtos';
+import {UserDto} from 'colibrihub-shared-dtos';
 
 /**
  * ## ``ValidationService``

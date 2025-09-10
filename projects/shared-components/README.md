@@ -40,18 +40,18 @@ export class MiComponente {}
 ## Importar Guard
 ````ts
 import { Routes } from '@angular/router';  
-import { validationGuard } from 'colibrihub-shared-components';  
+import { isLoggedInGuard, isLoggedOutGuard } from 'colibrihub-shared-components';  
   
 export const routes: Routes = [  
   {  
     path: 'dashboard',  
     component: DashboardComponent,  
-    canActivate: [validationGuard] // Proteger la ruta  
+    canMatch: [isLoggedInGuard] // Solo se muestra si se ha iniciado sesión
   },  
   {  
     path: 'perfil',  
     component: PerfilComponent,  
-    canActivate: [validationGuard]  
+    canMatch: [isLoggedOutGuard] // Solo se muestra si no ha iniciado sessión  
   },  
   {  
     path: 'publico',  

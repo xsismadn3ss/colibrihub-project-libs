@@ -30,7 +30,7 @@ export class AuthService {
 
   login(credentials: LoginDto) :Observable<LoginResponseDto> {
     const res = this.httpClient
-      .post<LoginResponseDto>(`${this.getUrl('/login')}`, credentials);
+      .post<LoginResponseDto>(`${this.getUrl('login')}`, credentials);
 
     if(isDevMode()){
       res.subscribe(data => {
@@ -52,7 +52,7 @@ export class AuthService {
     }
 
     return this.httpClient.post<MessageDto>(
-      `${this.getUrl('/logout')}`,
+      `${this.getUrl('logout')}`,
       {},
       {withCredentials: true}
     )

@@ -1,5 +1,6 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {ValidationService, AUTH_LOGIN_URL} from 'colibrihub-shared-services';
+import {ValidationService} from 'colibrihub-shared-services';
+import {LOGIN_URL} from '../../config/config';
 
 /**
  * @component Protect
@@ -24,7 +25,7 @@ import {ValidationService, AUTH_LOGIN_URL} from 'colibrihub-shared-services';
  * ## Configuración
  *
  * `Protect` depende de dos tokens de inyección que deben ser provistos en la configuración
- * de tu aplicación (`app.config.ts`): `AUTH_SERVICE_URL` y `AUTH_LOGIN_URL`.
+ * de tu aplicación (`app.config.ts`): `AUTH_SERVICE_URL` y `LOGIN_URL`.
  *
  * - `AUTH_SERVICE_URL`: La URL base del servicio de autenticación que se usará para validar la sesión del usuario.
  * - `AUTH_LOGIN_URL`: La URL a la que se redirigirá al usuario si la validación de la sesión falla.
@@ -34,7 +35,8 @@ import {ValidationService, AUTH_LOGIN_URL} from 'colibrihub-shared-services';
  * ```typescript
  * import { ApplicationConfig } from '@angular/core';
  * import { provideRouter } from '@angular/router';
- * import { AUTH_SERVICE_URL, AUTH_LOGIN_URL } from 'colibrihub-shared-services';
+ * import { AUTH_SERVICE_URL } from 'colibrihub-shared-services';
+ * import { LOGIN_URL } from 'colibrihub-shared-components';
  * import { routes } from './app.routes';
  *
  * export const appConfig: ApplicationConfig = {
@@ -43,7 +45,7 @@ import {ValidationService, AUTH_LOGIN_URL} from 'colibrihub-shared-services';
  *     // Provee la URL del servicio de autenticación
  *     { provide: AUTH_SERVICE_URL, useValue: 'https://api.tu-dominio.com/auth' },
  *     // Provee la URL para el inicio de sesión
- *     { provide: AUTH_LOGIN_URL, useValue: 'https://login.tu-dominio.com' }
+ *     { provide: LOGIN_URL, useValue: 'https://login.tu-dominio.com' }
  *   ]
  * };
  * ```
@@ -63,7 +65,7 @@ import {ValidationService, AUTH_LOGIN_URL} from 'colibrihub-shared-services';
 export class Protect implements OnInit{
   protected isLoaded = false;
   protected isValid = false;
-  private readonly loginUrl = inject(AUTH_LOGIN_URL)
+  private readonly loginUrl = inject(LOGIN_URL)
   private readonly validationService = inject(ValidationService)
 
   ngOnInit() {

@@ -1,6 +1,6 @@
 {
   "name": "colibrihub-shared-dtos",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "DTOs públicos para utilizar en los módulos del proyecto",
   "keywords": ["colibrihub", "shared-dtos", "angular", "shared", "dto", "colibri", "hub"],
   "license": "MIT",

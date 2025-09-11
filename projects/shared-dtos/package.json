@@ -8,12 +8,15 @@
     "name": "xsismadn3ss",
     "email": "2477carlos.a@gmail.com"
   },
+  "repository": {
+    "url": "https://github.com/xsismadn3ss/colibrihub-project-libs"
+  },
   "publishConfig": {
     "access": "public"
   },
   "peerDependencies": {
-    "@angular/common": "^20.2.0",
-    "@angular/core": "^20.2.0"
+    "@angular/common": ">=20.2.0 <21.0.0",
+    "@angular/core": ">=20.2.0 <21.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"

@@ -1,6 +1,6 @@
 {
   "name": "colibrihub-shared-components",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Componentes públicos para reutilizar en los módulos del proyecto",
   "keywords": ["colibrihub", "colibri", "hub", "shared", "components", "angular"],
   "license": "MIT",

@@ -17,6 +17,11 @@ para reutilizar lógica de negocio ⚙️
 - [shared-components](./projects/shared-components/README.md) - componentes
 compartidos reutilizables 🧩
 
+## NPM
+- [colibrihub-shared-dtos](https://www.npmjs.com/package/colibrihub-shared-dtos)
+- [colibrihub-shared-services](https://www.npmjs.com/package/colibrihub-shared-services)
+- [colibrihub-services](https://www.npmjs.com/package/colibrihub-services)
+
 ## Instalación
 
 DTOs:

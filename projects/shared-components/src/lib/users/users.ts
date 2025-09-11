@@ -1,7 +1,7 @@
-// component
+// components
 export * from './auth/auth.component'
 export * from './protect/protect.component'
+export * from './buttons/buttons'
 
 // guards
-export * from './session/is-logged-in-guard'
-export * from './session/is-logged-out-guard'
+export * from './session/session'

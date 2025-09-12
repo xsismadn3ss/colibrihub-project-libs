@@ -7,3 +7,7 @@ export * from './lib/common/common'
 
 // users/authentication
 export * from './lib/users/users'
+
+
+// clients
+export * from './lib/clients/clients'

@@ -1,0 +1,126 @@
+.badge-card{
+  background-color: #1e1e1e;
+  color: white;
+  width: 110px;
+  height: 30px;
+  border-radius: 15px;
+  position: fixed;
+  bottom: 0;
+  transform: translate(0px, -10px);
+  display: flex;
+  justify-content: space-between;
+  padding-top: 5px;
+  padding-inline: 5px;
+}
+
+.badge-dot{
+  background-color: #00d500;
+  border: 1px #c8c8c8 solid;
+  border-radius: 100%;
+  width: 15px;
+  height: 15px;
+  position: relative;
+  transform: translate(5px, 3px);
+}
+
+.badge-message{
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  transform: translate(-5px, 1px);
+}
+
+.badge-message:hover{
+  transition: ease-in-out 0.3s;
+  cursor: pointer;
+  color: #5190ec;
+}
+
+.login-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  width: 24vh;
+  height: 14vh;
+  padding: 10px;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  position: fixed;
+  bottom: 0;
+  transform: translate(0px, -40px);
+
+  input{
+    border: none;
+    outline: none;
+    padding: 5px;
+    border-radius: 5px;
+  }
+
+  button{
+    border: none;
+    outline: none;
+    padding: 5px;
+    border-radius: 5px;
+    background: #4ac44a;
+  }
+
+  button:hover{
+    transition: ease-in-out 0.32s;
+    cursor: pointer;
+    background-color: #2eaa2e;
+  }
+}
+
+.logout-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  width: 20vh;
+  height: 10vh;
+  padding: 10px;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  bottom: 0;
+  position: fixed;
+  transform: translate(0px, -50px);
+
+  span{
+    text-align: center;
+  }
+
+  div{
+    display: flex;
+    justify-content: space-evenly;
+  }
+  button{
+    border: none;
+    outline: none;
+    padding: 5px;
+    padding-inline: 10px;
+    border-radius: 5px;
+    color: white;
+  }
+}
+
+.positive{
+  background-color: #4ac44a;
+}
+.positive:hover{
+  background-color: #2eaa2e;
+  transition: all ease-out 0.32s;
+  cursor: pointer;
+}
+
+.negative{
+  background-color: #ec2525;
+}
+.negative:hover{
+  background-color: #ba0b0b;
+  transition: all ease-out 0.32s;
+  cursor: pointer;
+}

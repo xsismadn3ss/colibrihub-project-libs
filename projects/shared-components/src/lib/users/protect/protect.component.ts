@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, isDevMode, OnInit} from '@angular/core';
 import {ValidationService} from 'colibrihub-shared-services';
 import {LOGIN_URL} from '../../config/config';
 
@@ -8,6 +8,8 @@ import {LOGIN_URL} from '../../config/config';
  * Este componente protege el contenido que envuelve, mostrándolo solo si el usuario
  * tiene una sesión válida. Si la sesión no es válida, redirige al usuario a la URL
  * de inicio de sesión especificada.
+ *
+ * > Si el proyecto aún no está en producción hace una redirección a la ruta ``/``
  *
  * ## Uso
  *
@@ -69,6 +71,9 @@ export class Protect implements OnInit{
   private readonly validationService = inject(ValidationService)
 
   ngOnInit() {
+    if(isDevMode()){
+      window.location.href = '/';
+    }
     this.validationService.validate().subscribe({
       next: ()=>{
         this.isValid = true;

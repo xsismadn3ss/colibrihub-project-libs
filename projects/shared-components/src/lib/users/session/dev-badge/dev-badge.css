@@ -1,12 +1,13 @@
 .badge-card{
-  background-color: #1e1e1e;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
   color: white;
   width: 110px;
   height: 30px;
   border-radius: 15px;
   position: fixed;
   bottom: 0;
-  transform: translate(0px, -10px);
+  transform: translate(10px, -10px);
   display: flex;
   justify-content: space-between;
   padding-top: 5px;
@@ -15,7 +16,7 @@
 
 .badge-dot{
   background-color: #00d500;
-  border: 1px #c8c8c8 solid;
+  border: 1px #eaeaea solid;
   border-radius: 100%;
   width: 15px;
   height: 15px;
@@ -33,7 +34,7 @@
 .badge-message:hover{
   transition: ease-in-out 0.3s;
   cursor: pointer;
-  color: #5190ec;
+  color: #7aff81;
 }
 
 .login-form{
@@ -42,28 +43,32 @@
   justify-content: space-around;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: white;
-  width: 24vh;
-  height: 14vh;
+  width: 28vh;
+  height: 18vh;
   padding: 10px;
-  background-color: #1e1e1e;
+  background-color: rgba(0, 0, 0, 0.8);
   border-radius: 10px;
   margin-bottom: 10px;
   position: fixed;
   bottom: 0;
-  transform: translate(0px, -40px);
+  transform: translate(10px, -40px);
 
   input{
     border: none;
     outline: none;
     padding: 5px;
+    height: 25px;
     border-radius: 5px;
+    background-color: snow;
+    color: #1e1e1e;
   }
 
-  button{
+  button {
     border: none;
     outline: none;
     padding: 5px;
     border-radius: 5px;
+    height: 30px;
     background: #4ac44a;
   }
 
@@ -81,13 +86,14 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: white;
   width: 20vh;
-  height: 10vh;
+  height: 8vh;
   padding: 10px;
-  background-color: #1e1e1e;
+  background-color: rgba(0, 0, 0,  0.8);
+  backdrop-filter: blur(10px);
   border-radius: 10px;
   bottom: 0;
   position: fixed;
-  transform: translate(0px, -50px);
+  transform: translate(10px, -50px);
 
   span{
     text-align: center;
@@ -97,6 +103,7 @@
     display: flex;
     justify-content: space-evenly;
   }
+
   button{
     border: none;
     outline: none;
@@ -104,6 +111,8 @@
     padding-inline: 10px;
     border-radius: 5px;
     color: white;
+    height: 30px;
+    width: 45px;
   }
 }
 

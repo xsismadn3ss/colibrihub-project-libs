@@ -1,4 +1,4 @@
-import {Component, inject, OnInit, signal} from '@angular/core';
+import {Component, signal} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +7,5 @@ import {Component, inject, OnInit, signal} from '@angular/core';
   styleUrl: './app.css'
 })
 export class App {
-
+  protected title = signal('showcase');
 }

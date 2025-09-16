@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit, signal} from '@angular/core';
 import {ValidationService} from 'colibrihub-shared-services';
 
 /**
@@ -58,8 +58,8 @@ import {ValidationService} from 'colibrihub-shared-services';
   standalone: true,
   imports: [],
   template: `
-    @if (isLoaded){
-      @if (isValid){
+    @if (isLoaded()){
+      @if (isValid()){
         <ng-content select="[valid]"></ng-content>
       } @else {
         <ng-content select="[invalid]"></ng-content>
@@ -68,19 +68,19 @@ import {ValidationService} from 'colibrihub-shared-services';
   `
 })
 export class Auth implements OnInit{
-  protected isValid = false;
-  protected isLoaded = false;
+  protected isValid = signal<boolean>(false);
+  protected isLoaded = signal<boolean>(false);
   private readonly validationService = inject(ValidationService)
 
   ngOnInit() {
     this.validationService.validate().subscribe({
       next: () => {
-        this.isValid = true;
-        this.isLoaded = true;
+        this.isValid.set(true);
+        this.isLoaded.set(true);
       },
       error: () => {
-        this.isValid = false;
-        this.isLoaded = true;
+        this.isValid.set(true);
+        this.isLoaded.set(true);
       }
     });
   }

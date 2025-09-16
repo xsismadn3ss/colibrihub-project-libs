@@ -1,7 +1,7 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {DevContainer} from '../../../common/dev/dev';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {AuthService, ValidationService} from 'colibrihub-shared-services';
+import {AuthService, ValidationService } from 'colibrihub-shared-services';
 import {LoginDto} from 'colibrihub-shared-dtos';
 
 /**
@@ -52,60 +52,21 @@ import {LoginDto} from 'colibrihub-shared-dtos';
   styleUrl: './dev-badge.css'
 })
 export class DevBadge implements OnInit {
-  /**
-   * @property {AuthService} authService
-   * @description Servicio inyectado para gestionar la autenticación de usuarios (login/logout).
-   * @protected
-   */
   protected readonly authService = inject(AuthService);
-
-  /**
-   * @property {ValidationService} validationService
-   * @description Servicio inyectado para validar la sesión del usuario.
-   * @protected
-   */
   protected readonly validationService = inject(ValidationService);
 
-  /**
-   * @property {boolean} hide
-   * @description Controla la visibilidad del formulario de inicio de sesión.
-   * @protected
-   */
   protected hide = true;
-
-  /**
-   * @property {boolean} isValid
-   * @description Indica si la sesión del usuario actual es válida.
-   * @protected
-   */
   protected isValid = false;
 
-  /**
-   * @property {FormGroup} loginForm
-   * @description FormGroup para el formulario de inicio de sesión, con controles para `username` y `password`.
-   * @protected
-   */
   protected loginForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
   });
 
-  /**
-   * @method toggle
-   * @description Cambia el estado de la propiedad `hide` para mostrar u ocultar el formulario de inicio de sesión.
-   * @protected
-   * @returns {void}
-   */
   protected toggle(){
     this.hide = !this.hide;
   }
 
-  /**
-   * @method ngOnInit
-   * @description Hook del ciclo de vida de Angular. Se ejecuta al inicializar el componente.
-   * Llama a `validationService.validate()` para comprobar el estado de la sesión.
-   * @returns {void}
-   */
   ngOnInit() {
     this.validationService.validate().subscribe({
       next: () => {
@@ -117,14 +78,6 @@ export class DevBadge implements OnInit {
     });
   }
 
-  /**
-   * @method login
-   * @description Intenta autenticar al usuario utilizando las credenciales del `loginForm`.
-   * Si el formulario es válido, llama a `authService.login()`.
-   * Recarga la página en caso de éxito o muestra una alerta en caso de error.
-   * @protected
-   * @returns {void}
-   */
   protected login(){
     if(this.loginForm.valid){
       const data = {
@@ -144,13 +97,6 @@ export class DevBadge implements OnInit {
     }
   }
 
-  /**
-   * @method logout
-   * @description Cierra la sesión del usuario llamando a `authService.logout()`.
-   * Recarga la página tras cerrar la sesión.
-   * @protected
-   * @returns {void}
-   */
   protected logout(){
     this.authService.logout().subscribe({
       next: () =>{

@@ -1,8 +1,8 @@
 {
   "name": "colibrihub-shared-services",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "servicios y guards públicos para reutilizar en los módulos del proyecto",
-  "keywords": ["colibrihub", "colibri", "hub", "angular", "shares", "services"],
+  "keywords": ["colibrihub", "colibri", "hub", "angular", "shared", "services"],
   "license": "MIT",
   "author": {
     "name": "xsismadn3ss",

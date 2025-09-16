@@ -1,4 +1,4 @@
-import {InjectionToken} from '@angular/core';
+import {InjectionToken, signal} from '@angular/core';
 
 /**
  * URL del microservicio de autenticación
@@ -7,3 +7,4 @@ import {InjectionToken} from '@angular/core';
  */
 export const AUTH_SERVICE_URL = new InjectionToken<string>('AUTH_AUTH_URL');
 
+export const usernameSignal = signal<string | null >(null);

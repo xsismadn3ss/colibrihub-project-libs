@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {AUTH_SERVICE_URL} from '../../config/config';
 import {LoginDto, LoginResponseDto, MessageDto} from 'colibrihub-shared-dtos';
 import {Observable} from 'rxjs';
-import {SessionSignalService} from '../session/session-signal.service';
+import {usernameSignal} from '../../config/config';
 
 /**
  * ## ``AuthService``
@@ -24,7 +24,6 @@ export class AuthService {
   private readonly httpClient = inject(HttpClient)
   private readonly baseUrl = inject(AUTH_SERVICE_URL)
   private readonly prefix = '/authentication'
-  private readonly sessionSignal = inject(SessionSignalService)
 
   private getUrl(path: string){
     return `${this.baseUrl}${this.prefix}/${path}`
@@ -36,7 +35,7 @@ export class AuthService {
 
     if(isDevMode()){
       res.subscribe(data => {
-        this.sessionSignal.setUser(data.username);
+        usernameSignal.set(data.username)
         document.cookie = `token=${data.token}; max-age=60*60*24; path=/;`
       });
     }
@@ -48,14 +47,14 @@ export class AuthService {
     if(isDevMode()){
       document.cookie = `token=; max-age=0; path=/;`
       const res = {message: "Has cerrados sesión con éxito"} as MessageDto
-      this.sessionSignal.clear()
+      usernameSignal.set(null)
       return new Observable<MessageDto>(subscriber => {
         subscriber.next(res);
         subscriber.complete();
       })
     }
 
-    this.sessionSignal.clear()
+    usernameSignal.set(null)
     return this.httpClient.post<MessageDto>(
       `${this.getUrl('logout')}`,
       {},

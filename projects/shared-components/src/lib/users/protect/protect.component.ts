@@ -1,4 +1,4 @@
-import {Component, inject, isDevMode, OnInit} from '@angular/core';
+import {Component, inject, isDevMode, OnInit, signal} from '@angular/core';
 import {ValidationService} from 'colibrihub-shared-services';
 import {LOGIN_URL} from '../../config/config';
 
@@ -57,16 +57,16 @@ import {LOGIN_URL} from '../../config/config';
   standalone: true,
   imports: [],
   template: `
-    @if (isLoaded) {
-      @if (isValid) {
+    @if (isLoaded()) {
+      @if (isValid()) {
         <ng-content></ng-content>
       }
     }
   `
 })
 export class Protect implements OnInit{
-  protected isLoaded = false;
-  protected isValid = false;
+  protected isValid = signal<boolean>(false);
+  protected isLoaded = signal<boolean>(false);
   private readonly loginUrl = inject(LOGIN_URL)
   private readonly validationService = inject(ValidationService)
 
@@ -76,12 +76,10 @@ export class Protect implements OnInit{
     }
     this.validationService.validate().subscribe({
       next: ()=>{
-        this.isValid = true;
-        this.isLoaded = true;
+        this.isValid.set(true);
+        this.isLoaded.set(true);
       },
       error: ()=>{
-        this.isLoaded = true;
-        this.isValid = false;
         window.location.href = `${this.loginUrl}?redirect=${window.location.host}`
       }
     });

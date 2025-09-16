@@ -6,5 +6,3 @@ import {InjectionToken, signal} from '@angular/core';
  * Es utilizada por ``AuthService`` y ``ValidationService``
  */
 export const AUTH_SERVICE_URL = new InjectionToken<string>('AUTH_AUTH_URL');
-
-export const usernameSignal = signal<string | null >(null);

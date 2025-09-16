@@ -1,5 +1,5 @@
 import {inject, Injectable, isDevMode} from '@angular/core';
-import {AUTH_SERVICE_URL, usernameSignal} from '../../config/config';
+import {AUTH_SERVICE_URL} from '../../config/config';
 import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {findCookie} from '../../utils/cookie';
 import {Observable, throwError} from 'rxjs';
@@ -41,27 +41,9 @@ export class ValidationService {
         'Authorization': `Bearer ${cookie}`
       })
 
-      const res = this.httpClient.get<UserDto>(this.getUrl('header'), {headers})
-      res.subscribe({
-        next: data => {
-          usernameSignal.set(data.username)
-        },
-        error: () => {
-          usernameSignal.set(null)
-        }
-      });
-      return res;
+      return this.httpClient.get<UserDto>(this.getUrl('header'), {headers})
     }
 
-    const res = this.httpClient.get<UserDto>(this.getUrl('cookie'), {withCredentials: true})
-    res.subscribe({
-      next: data => {
-        usernameSignal.set(data.username)
-      },
-      error: () => {
-        usernameSignal.set(null)
-      }
-    });
-    return res;
+    return this.httpClient.get<UserDto>(this.getUrl('cookie'), {withCredentials: true})
   }
 }

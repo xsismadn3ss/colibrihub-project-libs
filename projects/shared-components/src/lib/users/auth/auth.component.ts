@@ -79,7 +79,7 @@ export class Auth implements OnInit{
         this.isLoaded.set(true);
       },
       error: () => {
-        this.isValid.set(true);
+        this.isValid.set(false);
         this.isLoaded.set(true);
       }
     });

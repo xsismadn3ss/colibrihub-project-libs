@@ -29,8 +29,8 @@
     "@angular/platform-browser": "^20.2.0",
     "@angular/router": "^20.2.0",
     "colibrihub-shared-dtos": "^0.0.4",
-    "colibrihub-shared-services": "^0.0.6",
-    "colibrihub-shared-components": "^0.0.9",
+    "colibrihub-shared-services": "^0.0.8",
+    "colibrihub-shared-components": "^0.0.12",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },

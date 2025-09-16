@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {findCookie} from '../../utils/cookie';
 import {Observable, throwError} from 'rxjs';
 import {UserDto} from 'colibrihub-shared-dtos';
+import {SessionSignalService} from '../session/session-signal.service';
 
 /**
  * ## ``ValidationService``
@@ -20,6 +21,7 @@ export class ValidationService {
   private readonly prefix = '/validation';
   private readonly baseUrl = inject(AUTH_SERVICE_URL);
   private httpClient = inject(HttpClient);
+  private readonly sessionSignal = inject(SessionSignalService);
 
   private getUrl(path: string){
     return `${this.baseUrl}${this.prefix}/${path}`
@@ -41,9 +43,27 @@ export class ValidationService {
         'Authorization': `Bearer ${cookie}`
       })
 
-      return this.httpClient.get<UserDto>(this.getUrl('header'), {headers})
+      const res = this.httpClient.get<UserDto>(this.getUrl('header'), {headers})
+      res.subscribe({
+        next: data => {
+          this.sessionSignal.setUser(data.username)
+        },
+        error: () => {
+          this.sessionSignal.clear()
+        }
+      });
+      return res;
     }
 
-    return this.httpClient.get<UserDto>(this.getUrl('cookie'), {withCredentials: true})
+    const res = this.httpClient.get<UserDto>(this.getUrl('cookie'), {withCredentials: true})
+    res.subscribe({
+      next: data => {
+        this.sessionSignal.setUser(data.username)
+      },
+      error: () => {
+        this.sessionSignal.clear()
+      }
+    });
+    return res;
   }
 }
